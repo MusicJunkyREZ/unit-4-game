@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>simple crystal game</title>
+
+</head>
+
+<body>
+
+    <h1>Crystal Game!</h1>
+    <p>Each crystal will have a random number assigned to it. Figure out what they are in order to choose them
+        to add up to the random target number.  If you get it exactly, you win and will be given a new number.
+        Go too high and you will lose and be able to play again.
+    </p>
+    <h2>Number to Guess: <span id="number-to-guess"></span></h2>
+    <h3>Current number: <span id="current-number"></span></h3>
+    <h3>Wins: <span id="win"></span></h3>
+    <h3>Losses: <span id="lose"></span></h3>
+
+    <div id="crystals">
+
+        <!--Crystal image-->
+        <img class="crystal-image" id="crystal1" src="crystal1.jpg" />
+        <img class="crystal-image" id="crystal2" src="crystal2.jpg" />
+        <img class="crystal-image" id="crystal3" src="crystal3.jpg" />
+        <img class="crystal-image" id="crystal4" src="crystal4.jpg" />
+        
+
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        var targetNumber = Math.floor(Math.random() * 51) + 50 //Sets random number between 50-100 for goal
+        var counter = 0;
+        var win = 0;
+        var lose = 0;
+
+        console.log(win);
+        console.log(lose);
+
+        $("#number-to-guess").text(targetNumber);//Takes ID in HTML to display target number generated above
+
+        document.querySelector('#win').innerHTML = win;//Prints 0 wins to HTML to start
+        document.querySelector('#lose').innerHTML = lose;//Prints 0 losses to HTML to start
+
+        //In order to give parameters for what numbers can be used. Then have them randomly generated.
+        var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        //Creating loop to create cyrstals for every numberOption
+
+        // for (i = 0; i < numberOptions.length; i++) {
+        //     var imageCrystal = $("<img>"); //Creates Crystal Image
+        //     imageCrystal.addClass("cyrstal-image"); //Each crystal will be given class crystal-image
+        //     imageCrystal.attr("src", "crystal2.jpg");
+        //     imageCrystal.attr("data-crystalvalue", numberOptions[i])//setting data-crystalvalue equal to numberOptions[i]
+        //     $("#crystals").append(imageCrystal); //Place the Image of the crystal with all its attributes in the crystals div
+        // }
+        var increment1 = numberOptions[Math.round(Math.random() * 10)];
+        var increment2 = numberOptions[Math.round(Math.random() * 10)];
+        var increment3 = numberOptions[Math.round(Math.random() * 10)];
+        var increment4 = numberOptions[Math.round(Math.random() * 10)];
+        
+        
+        
+        function reset(){
+            increment1 = numberOptions[Math.round(Math.random() * 10)];
+            increment2 = numberOptions[Math.round(Math.random() * 10)];
+            increment3 = numberOptions[Math.round(Math.random() * 10)];
+            increment4 = numberOptions[Math.round(Math.random() * 10)];
+            targetNumber = Math.floor(Math.random() * 51) + 50 //Sets random number between 50-100 for goal
+            $("#number-to-guess").text(targetNumber);//Takes ID in HTML to display target number generated above
+            counter=0;
+            }
+        
+
+
+        //Crystal 1
+        $("#crystal1").on("click", function () {
+
+            var crystalValue = ($(this).attr("data-crystalvalue"));
+            cyrstalValue = parseInt(crystalValue); //takes string and converts to number
+            counter += increment1 //so if computer choose 5, then the crystal will stay a 5
+            $("#current-number").text(counter)
+
+           
+
+            //Setting if else to generate if you win or lose
+            if (counter === targetNumber) {
+                alert("You win!");
+                winn++;
+                document.querySelector('#win').innerHTML = win;//Prints wins to HTML
+                reset();
+            } else if (counter > targetNumber) {
+                alert("You lose");
+                lose++;
+                document.querySelector('#lose').innerHTML = lose;//Prints losses to HTML
+                reset();
+                
+            }
+        });
+
+
+
+
+        //Crystal 2
+        $("#crystal2").on("click", function () {
+
+            var crystalValue = ($(this).attr("data-crystalvalue"));
+            cyrstalValue = parseInt(crystalValue); //takes string and converts to number
+            counter += increment2 //so if computer choose 5, then the crystal will stay a 5
+            $("#current-number").text(counter)
+
+            
+
+            //Setting if else to generate if you win or lose
+            if (counter === targetNumber) {
+                alert("You win!");
+                win++;
+                document.querySelector('#win').innerHTML = win;//Prints wins to HTML
+                reset();
+            } else if (counter > targetNumber) {
+                alert("You lose");
+                lose++;
+                document.querySelector('#lose').innerHTML = lose;//Prints losses to HTML
+                reset();
+            }
+
+        });
+
+        //Crystal 3
+        $("#crystal3").on("click", function () {
+
+            var crystalValue = ($(this).attr("data-crystalvalue"));
+            cyrstalValue = parseInt(crystalValue); //takes string and converts to number
+            counter += increment3 //so if computer choose 5, then the crystal will stay a 5
+            $("#current-number").text(counter)
+
+            
+
+            //Setting if else to generate if you win or lose
+            if (counter === targetNumber) {
+                alert("You win!");
+                win++;
+                document.querySelector('#win').innerHTML = win;//Prints wins to HTML
+                reset();
+            } else if (counter > targetNumber) {
+                alert("You lose");
+                lose++;
+                document.querySelector('#lose').innerHTML = lose;//Prints losses to HTML
+                reset();
+            }
+
+        });
+
+        //Crystal 4
+        $("#crystal4").on("click", function () {
+
+            var crystalValue = ($(this).attr("data-crystalvalue"));
+            cyrstalValue = parseInt(crystalValue); //takes string and converts to number
+            counter += increment4 //so if computer choose 5, then the crystal will stay a 5
+            $("#current-number").text(counter)
+
+        
+
+            //Setting if else to generate if you win or lose
+            if (counter === targetNumber) {
+                alert("You win!");
+                win++;
+                document.querySelector('#win').innerHTML = win;//Prints wins to HTML
+                reset();
+            } else if (counter > targetNumber) {
+                alert("You lose");
+                lose++;
+                document.querySelector('#lose').innerHTML = lose;//Prints losses to HTML
+                reset();
+            }
+
+        });
+
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>
